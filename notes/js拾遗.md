@@ -41,3 +41,15 @@ Foo.prototype.constructor === Foo; // true
 ```
 一个函数本身不是构造函数，但若使用了new调用，则这个函数可以被称为构造函数,.constructor是函数声明时的默认属性。且通过new实例化的对象的constructor实际上是.prototype.constructor,其本身并不存在constructor。
 
+使用Object.create创建新对象时，会把新对象内部的[[prototype]]关联到指定对象
+```
+  let foo = {
+    a: 1
+  };
+
+  let b = Object.create(foo);
+
+  //注对象不存在prototype，但在浏览器环境可通过.__protp__查看，如b.__proto__
+  b.prototype === foo // true
+```
+
