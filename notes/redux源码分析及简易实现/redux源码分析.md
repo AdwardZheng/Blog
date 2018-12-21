@@ -166,3 +166,5 @@ function subscribe(listener) {
   }
 ```
 需要注意的是subscribe会返回一个取消订阅的函数。
+
+最后[redux简易实现](https://github.com/AdwardZheng/Blog/blob/master/notes/redux%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%8F%8A%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0/redux.js)
