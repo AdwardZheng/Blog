@@ -119,3 +119,50 @@ export default function compose(...funcs) {
 ```
 这里如果再将dispatch作为参数放进去，最后得到的就是一个经过中间件包裹的dispatch，可以理解为一个强化过的dispatch。
 
+### dispatch
+```
+function dispatch(action) {
+    if (isDispatching) {
+      throw new Error('Reducers may not dispatch actions.')
+    }
+
+    try {
+      isDispatching = true
+      currentState = currentReducer(currentState, action)
+    } finally {
+      isDispatching = false
+    }
+
+    const listeners = (currentListeners = nextListeners)
+    for (let i = 0; i < listeners.length; i++) {
+      const listener = listeners[i]
+      listener()
+    }
+
+    return action
+  }
+```
+dispatch其实主要做了两件事，一是根据传入的action执行了reducer，二是执行了在subscribe中注册的listener。这里需要注意的是有一个isDispatching,根据这个来保证不会出现多个dispatch同时执行，避免store的值受到干扰，因为我们需要把当前的state传入reducer中即currentState = currentReducer(currentState, action)。最后再执行listener。
+
+### subscribe
+subscribe是订阅redux中状态变化的函数，在上面我们也可以看出，在dispatch最后会调用listener。
+```
+function subscribe(listener) {
+
+    let isSubscribed = true
+
+    nextListeners.push(listener)
+
+    return function unsubscribe() {
+      if (!isSubscribed) {
+        return
+      }
+
+      isSubscribed = false
+
+      const index = nextListeners.indexOf(listener)
+      nextListeners.splice(index, 1)
+    }
+  }
+```
+需要注意的是subscribe会返回一个取消订阅的函数。
