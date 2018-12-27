@@ -96,6 +96,7 @@ node的新加入了process.nextTick和setImmediate两个新的api。其中nextTi
 
 我们先看下node的循环流程
 ![node循环](../imgs/event_loop.png)
+
 主要注意下poll阶段，引用[前辈的原文](https://segmentfault.com/a/1190000013102056)
 
 * poll队列不为空的时候，事件循环肯定是先遍历队列并同步执行回调，直到队列清空或执行回调数达到系统上限。
