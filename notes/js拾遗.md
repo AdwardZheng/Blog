@@ -113,3 +113,19 @@ setTimeout和setImmediate在调用中的执行顺序为：
 第一点是因为，setTimeout有一个最小调用时间，性能足够好时，可能执行到timer阶段时，最小调用时间还没到，于是进入pool阶段再到check于是就先执行了setImmediate。性能不够时当然时先执行setTimeout。
 
 第二点是因为node回调的Api大多在pool阶段执行。当回调执行时，setTimeout进入timer，此时有setImmediate,于是先执行check。
+
+### 懒加载常用api
+
+#### getBoundingClientRect([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect))
+Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
+
+#### IntersectionObserver API
+判断元素是否进入视图[阮一峰老师原文](http://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html)
+
+#### 经典常用api
+
+document.documentElement.clientHeight
+
+document.documentElement.scroolTop
+
+element.offsetTop
