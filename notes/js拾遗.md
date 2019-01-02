@@ -96,6 +96,7 @@ node的新加入了process.nextTick和setImmediate两个新的api。其中nextTi
 
 我们先看下node的循环流程
 ![node循环](../imgs/event_loop.png)
+
 主要注意下poll阶段，引用[前辈的原文](https://segmentfault.com/a/1190000013102056)
 
 * poll队列不为空的时候，事件循环肯定是先遍历队列并同步执行回调，直到队列清空或执行回调数达到系统上限。
@@ -113,6 +114,23 @@ setTimeout和setImmediate在调用中的执行顺序为：
 
 第二点是因为node回调的Api大多在pool阶段执行。当回调执行时，setTimeout进入timer，此时有setImmediate,于是先执行check。
 
+### 懒加载常用api
+
+#### getBoundingClientRect([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect))
+Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
+
+#### IntersectionObserver API
+判断元素是否进入视图[阮一峰老师原文](http://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html)
+
+#### 经典常用api
+
+document.documentElement.clientHeight
+
+document.documentElement.scroolTop
+
+element.offsetTop
+
+
 ### react事件系统和setState
 
 简单记录下react事件系统和setState的特性，有空完整解析事件系统和setState
@@ -124,4 +142,3 @@ react事件可以简单理解为，react事件以类似事件池的方式，挂�
 #### setState
 
 setState在react系统中是异步的，在原生环境下是同步的
-
