@@ -112,3 +112,16 @@ setTimeout和setImmediate在调用中的执行顺序为：
 第一点是因为，setTimeout有一个最小调用时间，性能足够好时，可能执行到timer阶段时，最小调用时间还没到，于是进入pool阶段再到check于是就先执行了setImmediate。性能不够时当然时先执行setTimeout。
 
 第二点是因为node回调的Api大多在pool阶段执行。当回调执行时，setTimeout进入timer，此时有setImmediate,于是先执行check。
+
+### react事件系统和setState
+
+简单记录下react事件系统和setState的特性，有空完整解析事件系统和setState
+
+#### 事件系统
+
+react事件可以简单理解为，react事件以类似事件池的方式，挂载在document上。原生事件冒泡完毕后，在进入react的事件系统中。
+
+#### setState
+
+setState在react系统中是异步的，在原生环境下是同步的
+
