@@ -15,6 +15,4 @@
 
 ### Node
 
-[安装MongoDB注意事项](https://github.com/AdwardZheng/Blog/edit/master)
-
 
