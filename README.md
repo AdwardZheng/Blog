@@ -15,4 +15,4 @@
 
 ### Node
 
-
+[egg下mongoose的typescript实践](https://github.com/AdwardZheng/Blog/blob/master/notes/egg%E4%B8%8Bmongoose%E7%9A%84typescript%E5%AE%9E%E8%B7%B5.md)
